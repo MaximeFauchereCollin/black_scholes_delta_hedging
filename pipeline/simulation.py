@@ -21,9 +21,6 @@ def simulate_gbm(S0: float, r: float, q: float, sigma: float, T: float, n_steps:
     Z = np.random.standard_normal((n_paths, n_steps))
 
     increments = (r - q - 0.5 * sigma**2) * dt + sigma * np.sqrt(dt) * Z
-    log_paths = np.concatenate(
-        [np.zeros((n_paths, 1)), np.cumsum(increments, axis=1)],
-        axis=1,
-    )
+    log_paths = np.concatenate([np.zeros((n_paths, 1)), np.cumsum(increments, axis=1)], axis=1)
 
     return S0 * np.exp(log_paths)
