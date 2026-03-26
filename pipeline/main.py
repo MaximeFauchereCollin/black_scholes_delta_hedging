@@ -1,5 +1,5 @@
-from .backtest import run_backtest, run_trace
-from .analysis import (plot_gamma_vs_pnl, plot_hedge_trace, plot_pnl_distribution,
+from backtest import run_backtest, run_trace
+from analysis import (plot_gamma_vs_pnl, plot_hedge_trace, plot_pnl_distribution,
                       plot_rebal_comparison, plot_sample_paths, print_stats)
 
 PARAMS = {
@@ -16,23 +16,18 @@ PARAMS = {
 }
 
 # 1. Call — daily rebalancing
-pnls_call, gamma_errors_call, paths = run_backtest(
-    **PARAMS,
-    rebal_freq=1,
-    kind="call",
-)
+pnls_call, gamma_errors_call, paths = run_backtest(**PARAMS, rebal_freq=1, kind="call")
 print_stats(pnls_call, gamma_errors_call, "Call | daily rebalancing")
-plot_gamma_vs_pnl(
-    pnls_call,
-    gamma_errors_call,
-    figsize=(8, 8),
-    style="dark_background",
-)
+plot_gamma_vs_pnl(pnls_call, gamma_errors_call, figsize=(8, 8))
+plot_pnl_distribution(pnls_call, gamma_errors_call)
+plot_sample_paths(paths, K=PARAMS["K"])
 
 # 2. Put — daily rebalancing
 '''pnls_put, gamma_errors_put, _ = run_backtest(**PARAMS, rebal_freq=1, kind="put")
 print_stats(pnls_put, gamma_errors_put, "Put | daily rebalancing")
-plot_gamma_vs_pnl(pnls_put, gamma_errors_put, figsize=(8, 8), style="dark_background")'''
+plot_gamma_vs_pnl(pnls_put, gamma_errors_put)
+plot_pnl_distribution(pnls_call, gamma_errors_put)
+plot_sample_paths(_, K=PARAMS["K"])'''
 
 # 3. Rebalancing frequency comparison
 pnls_dict = {}  # {freq -> pnls} for plot_rebal_comparison
@@ -43,12 +38,9 @@ for freq in [1, 3, 7, 10]:
     gamma_dict[freq] = gamma_errors
     print_stats(pnls, gamma_errors, f"Call | freq={freq} steps")
 
-# 4. Visualizations
 plot_rebal_comparison(pnls_dict)
-plot_pnl_distribution(pnls_call, gamma_errors_call)
-plot_sample_paths(paths, K=PARAMS["K"])
 
-# 5. Visualizing the hedge on one path
+# 4. Visualizing the hedge on one path
 PARAMS_BIS = {
     "S0": 100,
     "K": 100,
