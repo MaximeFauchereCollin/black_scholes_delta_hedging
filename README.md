@@ -24,7 +24,6 @@ Key features:
 ## Project Structure
 
 ```
-project_root/
 ├── pipeline/
 │   ├── black_scholes.py      # BSM pricing formulas and Greeks
 │   ├── simulation.py         # GBM path simulation
@@ -45,11 +44,11 @@ project_root/
 
 Under the BSM model, the underlying follows:
 
-$$dS_t = (r - q)\,S_t\,dt + \sigma\,S_t\,dW_t$$
+$$dS_t = (r - q)S_tdt + \sigma S_tdW_t$$
 
 A delta-hedged portfolio replicates the option perfectly under **continuous** rebalancing. Under **discrete** rebalancing with step $\Delta t$, a residual hedging error accumulates. The leading-order contribution per interval is:
 
-$$\epsilon_\Gamma = -\frac{1}{2}\,\Gamma\left[(\Delta S)^2 - \sigma^2 S^2 \Delta t\right]$$
+$$\epsilon_\Gamma = -\frac{1}{2}\\Gamma\left[(\Delta S)^2 - \sigma^2 S^2 \Delta t\right]$$
 
 ---
 
