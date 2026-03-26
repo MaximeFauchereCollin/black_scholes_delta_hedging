@@ -1,6 +1,6 @@
 import numpy as np
-from .hedging import hedge_one_path
-from .simulation import simulate_gbm
+from hedging import hedge_one_path
+from simulation import simulate_gbm
 
 
 def run_backtest(S0: float, K: float, T: float, r: float, q: float, sigma: float,
@@ -8,8 +8,7 @@ def run_backtest(S0: float, K: float, T: float, r: float, q: float, sigma: float
                  kind: str = "call", seed: int | None = None) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     """Run a backtest over multiple simulated paths."""
     paths = simulate_gbm(S0, r, q, sigma, T, n_steps, n_paths, seed)
-    results = [hedge_one_path(paths[i], K, T, r, q, sigma, rebal_freq, trans_cost, kind)
-        for i in range(n_paths)]
+    results = [hedge_one_path(paths[i], K, T, r, q, sigma, rebal_freq, trans_cost, kind) for i in range(n_paths)]
 
     pnls = np.array([res["hedge_error"] for res in results])
     gamma_errors = np.array([res["gamma_error"] for res in results])
