@@ -1,6 +1,6 @@
 import numpy as np
-from hedging import hedge_one_path
-from simulation import simulate_gbm
+from .hedging import hedge_one_path
+from .simulation import simulate_gbm
 
 
 def run_backtest(S0: float, K: float, T: float, r: float, q: float, sigma: float,

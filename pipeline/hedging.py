@@ -1,5 +1,5 @@
 import numpy as np
-from black_scholes import option_delta, option_gamma, option_price
+from .black_scholes import option_delta, option_gamma, option_price
 
 
 def hedge_one_path(path: np.ndarray, K: float, T: float, r: float, q: float, sigma: float, rebal_freq: int,

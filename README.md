@@ -24,14 +24,17 @@ Key features:
 ## Project Structure
 
 ```
-.
-├── black_scholes.py      # BSM pricing formulas and Greeks
-├── simulation.py         # GBM path simulation
-├── hedging.py            # Discrete delta hedging engine (single path)
-├── backtest.py           # Multi-path backtest and single-path trace runner
-├── analysis.py           # Visualisations and descriptive statistics
-├── main.py               # Main experiment script
-├── hedging_study.ipynb        # Analytical narrative notebook
+project_root/
+├── pipeline/
+│   ├── black_scholes.py      # BSM pricing formulas and Greeks
+│   ├── simulation.py         # GBM path simulation
+│   ├── hedging.py            # Discrete delta hedging engine (single path)
+│   ├── backtest.py           # Multi-path backtest and single-path trace runner
+│   ├── analysis.py           # Visualisations and descriptive statistics
+│   └── main.py               # Main experiment script
+│
+├── hedging_study.ipynb       # Analytical narrative notebook
+│
 ├── requirements.txt
 └── README.md
 ```
@@ -65,7 +68,7 @@ pip install -r requirements.txt
 
 **3. Run the main experiment**
 ```bash
-python main.py
+python pipeline/main.py
 ```
 
 Output figures are saved to `outputs/`.
