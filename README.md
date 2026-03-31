@@ -56,8 +56,8 @@ $$\epsilon_\Gamma = -\frac{1}{2}\\Gamma\left[(\Delta S)^2 - \sigma^2 S^2 \Delta 
 
 **1. Clone the repository**
 ```bash
-git clone https://github.com/<your-username>/black-scholes-delta-hedging.git
-cd black-scholes-delta-hedging
+git clone https://github.com/<your-username>/black_scholes_delta_hedging.git
+cd black_scholes_delta_hedging
 ```
 
 **2. Install dependencies**
