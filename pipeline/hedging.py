@@ -34,8 +34,8 @@ def hedge_one_path(path: np.ndarray, K: float, T: float, r: float, q: float, sig
     delta_th[0] = d0
     delta_held[0] = d0
     option_val[0] = V0
-    portfolio_val[0] = cash + delta * S0  # Portfolio = V0
-    pnl[0] = portfolio_val[0] - V0  # PnL = 0
+    portfolio_val[0] = cash + delta * S0  # Portfolio = V0 - tc_init
+    pnl[0] = portfolio_val[0] - V0  # PnL = -tc_init
 
     # Main loop
     for i in range(1, n_steps + 1):
