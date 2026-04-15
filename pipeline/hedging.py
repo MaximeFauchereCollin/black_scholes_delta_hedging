@@ -28,7 +28,7 @@ def hedge_one_path(path: np.ndarray, K: float, T: float, r: float, q: float, sig
     option_val = np.zeros(n_steps + 1)
     portfolio_val = np.zeros(n_steps + 1)
     pnl = np.zeros(n_steps + 1)
-    rebal_idx: list[int] = []
+    rebal_idx = []
 
     # t = 0
     delta_th[0] = d0
